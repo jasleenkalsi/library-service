@@ -11,6 +11,23 @@ export const getAllBooks = (req: Request, res: Response): void => {
     }
 };
 
+export const getBookById = (req: Request, res: Response): void => {
+    try {
+        const { id } = req.params;
+        const book = bookService.getBookById(id);
+        if (book) {
+            res.status(200).json({
+                message: "Book retrieved",
+                data: book,
+            });
+        } else {
+            res.status(404).json({ message: "Book not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Error retrieving book" });
+    }
+};
+
 export const addBook = (req: Request, res: Response): void => {
     try {
         const newBook = req.body;

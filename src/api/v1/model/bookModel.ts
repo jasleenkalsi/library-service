@@ -7,4 +7,6 @@ export interface Book {
     isBorrowed: boolean;
     borrowerId?: string;
     dueDate?: string;
+    availabilityStatus?: string; 
+
 }
