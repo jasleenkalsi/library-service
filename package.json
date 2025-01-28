@@ -8,12 +8,32 @@
         "build": "tsc"
     },
     "dependencies": {
-        "express": "^4.19.2"
+        "express": "^4.21.2",
+        "morgan": "^1.10.0",
+        "swagger-jsdoc": "^6.2.8",
+        "swagger-ui-express": "^5.0.1"
     },
     "devDependencies": {
         "@types/express": "^4.17.21",
-        "@types/node": "^20.12.13",
+        "@types/jest": "^29.5.14",
+        "@types/node": "^20.17.16",
+        "@types/supertest": "^6.0.2",
+        "jest": "^29.7.0",
+        "supertest": "^7.0.0",
+        "ts-jest": "^29.2.5",
         "ts-node": "^10.9.2",
-        "typescript": "^5.6.2"
-    }
+        "typescript": "^5.7.3"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/jasleenkalsi/library-service.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "commonjs",
+    "bugs": {
+        "url": "https://github.com/jasleenkalsi/library-service/issues"
+    },
+    "homepage": "https://github.com/jasleenkalsi/library-service#readme"
 }
