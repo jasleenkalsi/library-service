@@ -6,6 +6,7 @@ const books: Book[] = [
         title: "The Great Gatsby",
         author: "F. Scott Fitzgerald",
         genre: "Fiction",
+        publishedDate:"march",
         isBorrowed: false,
     },
     {
@@ -13,6 +14,7 @@ const books: Book[] = [
         title: "1984",
         author: "George Orwell",
         genre: "Dystopian",
+         publishedDate:"march",
         isBorrowed: false,
     },
     {
@@ -20,6 +22,7 @@ const books: Book[] = [
         title: "To Kill a Mockingbird",
         author: "Harper Lee",
         genre: "Classic",
+         publishedDate:"march",
         isBorrowed: false,
     },
 ];
@@ -98,16 +101,16 @@ export const updateBook = (id: string, bookData: Partial<Book>): Book => {
     const safeUpdate = { ...bookData };
 
     // The following are the protected fields:
-    // Prevent ID changes
     delete safeUpdate.id;
-    // These fields should only be modified through borrowBook/returnBook
     delete safeUpdate.isBorrowed;
     delete safeUpdate.borrowerId;
     delete safeUpdate.dueDate;
 
+    // Apply the updates
     Object.assign(book, safeUpdate);
     return book;
 };
+
 
 /**
  * Removes a book from the library system.
