@@ -3,7 +3,10 @@ export interface Book {
     title: string;
     author: string;
     genre: string;
+    publishedDate?: string;
     isBorrowed: boolean;
     borrowerId?: string;
     dueDate?: string;
+    availabilityStatus?: string; 
+
 }

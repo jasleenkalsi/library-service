@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import * as bookService from "../services/bookService";
+import { Book } from "../model/bookModel";
 
 export const getAllBooks = (req: Request, res: Response): void => {
     try {
@@ -7,6 +8,23 @@ export const getAllBooks = (req: Request, res: Response): void => {
         res.status(200).json({ message: "Books retrieved", data: books });
     } catch (error) {
         res.status(500).json({ message: "Error retrieving books" });
+    }
+};
+
+export const getBookById = (req: Request, res: Response): void => {
+    try {
+        const { id } = req.params;
+        const book = bookService.getBookById(id);
+        if (book) {
+            res.status(200).json({
+                message: "Book retrieved",
+                data: book,
+            });
+        } else {
+            res.status(404).json({ message: "Book not found" });
+        }
+    } catch (error) {
+        res.status(500).json({ message: "Error retrieving book" });
     }
 };
 
@@ -23,7 +41,19 @@ export const addBook = (req: Request, res: Response): void => {
 export const updateBook = (req: Request, res: Response): void => {
     try {
         const { id } = req.params;
-        const updatedData = req.body;
+        const { title, author, genre, publishedDate } = req.body;
+
+        // Validation
+        if (!title && !author && !genre && !publishedDate) {
+             res.status(400).json({ message: "At least one field (title, author, genre, publishedDate) is required for update." });
+        }
+
+        const updatedData: Partial<Book> = {};
+        if (title) updatedData.title = title;
+        if (author) updatedData.author = author;
+        if (genre) updatedData.genre = genre;
+        if (publishedDate) updatedData.publishedDate = publishedDate;
+
         const updatedBook = bookService.updateBook(id, updatedData);
         if (updatedBook) {
             res.status(200).json({
@@ -37,6 +67,7 @@ export const updateBook = (req: Request, res: Response): void => {
         res.status(500).json({ message: "Error updating book" });
     }
 };
+
 
 export const deleteBook = (req: Request, res: Response): void => {
     try {
